@@ -2,6 +2,9 @@
   <div class="hello">
       <div class="left">
           <h1> {{ title }} </h1>
+          <form @submit.prevent="addLink">
+              <input class="link" type="text" placeholder="Add a link" v-model="newLink">
+          </form>
           <ul>
               <li v-for="(link, index) in links" :key="index">
                   {{link}}
@@ -16,17 +19,31 @@
 
 <script>
 import stats from '../components/stats.vue'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'HelloWorld',
   components: {
       stats
+  },
+  data(){
+      return {
+          newLink: ''
+      }
   },
   computed: {
       ...mapState([
           'title',
           'links'
       ]),
+  },
+  methods: {
+      ...mapMutations([
+          'ADD_LINK'
+      ]),
+      addLink: function() {
+          this.ADD_LINK(this.newLink)
+          this.newLink = ''
+      } 
   }
 }
 </script>
@@ -68,6 +85,15 @@ export default {
   .right {
     grid-area: right;
     background-color: #E9E9E9;
+  }
+
+  input {
+    border: none;
+    padding: 20px;
+    width: calc(100% - 40px);
+    box-shadow: 0 5px 5px lightgrey;
+    margin-bottom: 50px;
+    outline: none;
   }
 
 </style>
