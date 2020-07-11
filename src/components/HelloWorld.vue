@@ -3,7 +3,7 @@
       <div class="left">
           <h1> {{ title }} </h1>
           <form @submit.prevent="addLink">
-              <input class="link" type="text" placeholder="Add a link" v-model="newLink">
+              <input class="link" type="text" placeholder="Add a List" v-model="newLink">
           </form>
           <ul>
               <li v-for="(link, index) in links" :key="index">
