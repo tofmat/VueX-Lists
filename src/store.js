@@ -6,11 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         title: 'My Lists.',
-        links: [
-            'http://tosinogunfowote.com',
-            'http://github.com',
-            'http://youtube.com'
-        ]
+        links: []
     },
     getters: {
         countLinks: state => {
